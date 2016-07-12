@@ -1,3 +1,4 @@
+/*I'd probably move some of the order around, moving some of your univeral page stuff to the top. If you are using the marvel font on everything I'd take it out of the individual elements and maybe put it on body or comic. I also changed some of the padding so more fits on the screen and tidied some things up.*/
 comic {
   display:inline-block;
   margin: 0 auto;

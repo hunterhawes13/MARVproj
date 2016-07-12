@@ -29,9 +29,7 @@ var marvel = marvelFactory({
 });
 
 
-
-
-
+// Since we have these I added them below to your code where necessary. There were also some missing ; and some other changes I made that popped up in my linter.
 function $(selector) {
   return document.querySelector(selector);
 }
@@ -59,14 +57,15 @@ marvel('/characters/1009266/comics').then(function(json) {
     //  // Any operations specific to this character
     var imgPath = comics.thumbnail.path + '.' + comics.thumbnail.extension;
     var name = comics.title;
-    var img = document.createElement('img');
+
+    var img = $.create('img');
     img.setAttribute('src', imgPath);
-    var nameTag = document.createElement('comic-name');
-    var nameTextNode = document.createTextNode(name);
-    var nameLinkNode = document.createElement('a');
+    var nameTag = $.create('comic-name');
+    var nameTextNode = $.createText(name);
+    var nameLinkNode = $.create('a');
     nameLinkNode.setAttribute('href', 'https://www.google.com/#q=' + encodeURIComponent(name));
     nameLinkNode.appendChild(nameTextNode);
-    var shape = document.createElement('div');
+    var shape = $.create('div');
     comicContainer.appendChild(shape);
 
     nameTag.appendChild(nameTextNode); // <character-name><a href="...">3D-man</a></character-name>
@@ -74,10 +73,10 @@ marvel('/characters/1009266/comics').then(function(json) {
     // // Add different properties for a single character
     comicContainer.appendChild(nameTag); // <character><character-name>3D-Man</character-name></character>
     comicContainer.appendChild(img); // <character><character-name>3D-Man</character-name><img src="..." /></character>
-img.addEventListener("click", function(){
-  var snd = new Audio('/bigrez2.wav');
+    img.addEventListener("click", function(){
+    var snd = new Audio('/bigrez2.wav');
         snd.play();
-  setTimeout(function(){alert("X-men and Avengers are 2 of Marvel's most successful franchises!");},2000);
+    setTimeout(function(){alert("X-men and Avengers are 2 of Marvel's most successful franchises!");},2000);
  });
 
 
