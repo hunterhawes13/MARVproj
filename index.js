@@ -17,7 +17,7 @@ function marvelFactory(config) {
     console.log(url);
 
     return fetchJSON(url);
-  };
+  }
 }
 
 // Get an instance of the marvel api
@@ -29,27 +29,29 @@ var marvel = marvelFactory({
 });
 
 
-// Since we have these I added them below to your code where necessary. There were also some missing ; and some other changes I made that popped up in my linter.
+
+
+
 function $(selector) {
   return document.querySelector(selector);
 }
 
 $.create = function(elementName){
   return document.createElement(elementName);
-};
+}
 
 $.createText = function(text){
   return document.createTextNode(text);
-};
+}
 
 $.setAttribute = function (el, attr, value) {
   return el.setAttribute(el, attr, value);
-};
+}
 
 // Make a call using the api
 
 
-marvel('/characters/1009266/comics').then(function(json) {
+marvel('/characters/1009266/comics').then(function(json) { 
   json.data.results.map(function(comics){
 
     var comicContainer = document.createElement('comic');
@@ -57,15 +59,14 @@ marvel('/characters/1009266/comics').then(function(json) {
     //  // Any operations specific to this character
     var imgPath = comics.thumbnail.path + '.' + comics.thumbnail.extension;
     var name = comics.title;
-
-    var img = $.create('img');
-    img.setAttribute('src', imgPath);
-    var nameTag = $.create('comic-name');
-    var nameTextNode = $.createText(name);
-    var nameLinkNode = $.create('a');
+    var img = document.createElement('img'); 
+    img.setAttribute('src', imgPath); 
+    var nameTag = document.createElement('comic-name'); 
+    var nameTextNode = document.createTextNode(name); 
+    var nameLinkNode = document.createElement('a'); 
     nameLinkNode.setAttribute('href', 'https://www.google.com/#q=' + encodeURIComponent(name));
-    nameLinkNode.appendChild(nameTextNode);
-    var shape = $.create('div');
+    nameLinkNode.appendChild(nameTextNode); 
+    var shape = document.createElement('div')
     comicContainer.appendChild(shape);
 
     nameTag.appendChild(nameTextNode); // <character-name><a href="...">3D-man</a></character-name>
@@ -73,16 +74,16 @@ marvel('/characters/1009266/comics').then(function(json) {
     // // Add different properties for a single character
     comicContainer.appendChild(nameTag); // <character><character-name>3D-Man</character-name></character>
     comicContainer.appendChild(img); // <character><character-name>3D-Man</character-name><img src="..." /></character>
-    img.addEventListener("click", function(){
-    var snd = new Audio('/bigrez2.wav');
+img.addEventListener("click", function(){ 
+  var snd = new Audio('/bigrez2.wav');
         snd.play();
-    setTimeout(function(){alert("X-men and Avengers are 2 of Marvel's most successful franchises!");},2000);
+  setTimeout(function(){alert("X-men and Avengers are 2 of Marvel's most successful franchises!")},2000);
  });
 
 
     // Add the character tag to the overall list of characters
     var container = document.querySelector('comics'); // <characters><character><character-name>3D-Man</character-name><img src="..." /></character></characters>
-    container.appendChild(comicContainer);
+    container.appendChild(comicContainer); 
 
 
   });
